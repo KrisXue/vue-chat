@@ -1,7 +1,7 @@
 
 var chalk = require('chalk')
 var semver = require('semver')
-var packageConfig = require('../package.json.js')
+var packageConfig = require('../package.json')
 var exec = function (cmd) {
   return require('child_process')
     .execSync(cmd).toString().trim()
@@ -24,7 +24,7 @@ module.exports = function () {
   for (var i = 0; i < versionRequirements.length; i++) {
     var mod = versionRequirements[i]
     if (!semver.satisfies(mod.currentVersion, mod.versionRequirement)) {
-       warnings.push(mod.name + ': ' +
+      warnings.push(mod.name + ': ' +
         chalk.red(mod.currentVersion) + ' should be ' +
         chalk.green(mod.versionRequirement)
       )
